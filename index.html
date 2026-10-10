@@ -1,369 +1,262 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f7f6f2">
-  <meta name="description" content="Asmi Bandyopadhyay — Implementation Analyst, technology consultant, and analytics enthusiast building useful systems from data and business problems.">
-  <title>Asmi Bandyopadhyay — Analyst · Builder · Problem Solver</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root{--paper:#f7f6f2;--white:#fffefa;--ink:#18221e;--muted:#66716b;--line:#dedfd7;--green:#235b45;--green2:#dce9df;--lime:#d4f36b;--orange:#ed7955;--mono:"DM Mono",monospace;--sans:"DM Sans",sans-serif;--display:"Manrope",sans-serif;--max:1160px}
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth;scroll-padding-top:92px}
-    body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
-    a{color:inherit}
-    a:focus-visible,button:focus-visible{outline:3px solid var(--orange);outline-offset:4px}
-    .wrap{width:min(var(--max),calc(100% - 64px));margin-inline:auto}
-    .mono{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
-    .nav{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);background:rgba(247,246,242,.9);backdrop-filter:blur(16px);position:sticky;top:0;z-index:20}
-    .nav-inner{display:flex;align-items:center;justify-content:space-between;width:min(var(--max),calc(100% - 64px));margin:auto}
-    .brand{text-decoration:none;font-family:var(--display);font-weight:800;font-size:1rem;letter-spacing:-.04em;display:flex;align-items:center;gap:10px}
-    .brand-mark{width:31px;height:31px;background:var(--green);color:white;border-radius:50%;display:grid;place-items:center;font-size:.72rem;letter-spacing:-.04em}
-    .nav-links{display:flex;gap:28px;align-items:center}
-    .nav-links a{text-decoration:none;color:var(--muted);font-size:.86rem;transition:color .2s}
-    .nav-links a:hover{color:var(--green)}
-    .nav-links .nav-contact{background:var(--ink);color:white;padding:10px 16px;border-radius:3px}
-    .menu-toggle{display:none;border:1px solid var(--line);background:transparent;border-radius:4px;padding:8px 10px;font:inherit}
-    .hero{padding:94px 0 82px;position:relative;overflow:hidden}
-    .hero:before{content:"";position:absolute;right:-180px;top:0;width:560px;height:560px;border:1px solid #e4e5dc;border-radius:50%;box-shadow:0 0 0 55px rgba(35,91,69,.025),0 0 0 110px rgba(35,91,69,.02);pointer-events:none}
-    .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:64px;align-items:center;position:relative}
-    .eyebrow{display:flex;align-items:center;gap:10px;color:var(--green);margin-bottom:24px}
-    .status-dot{width:8px;height:8px;border-radius:50%;background:#7b9c4a;box-shadow:0 0 0 4px #e4ecd7}
-    h1,h2,h3{font-family:var(--display);letter-spacing:-.055em}
-    h1{font-size:clamp(3.5rem,7.3vw,6.7rem);line-height:.99;font-weight:700;max-width:720px}
-    h1 .accent{color:var(--green);font-weight:500}
-    .hero-sub{font-size:1.12rem;color:var(--muted);max-width:590px;margin-top:27px;line-height:1.8}
-    .hero-sub strong{color:var(--ink);font-weight:600}
-    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:13px 18px;border:1px solid var(--ink);border-radius:3px;text-decoration:none;font-weight:600;font-size:.88rem;transition:transform .2s,background .2s,color .2s}
-    .btn:hover{transform:translateY(-2px)}
-    .btn-primary{background:var(--ink);color:white}
-    .btn-primary:hover{background:var(--green)}
-    .btn-secondary{border-color:var(--line);background:var(--white)}
-    .btn-secondary:hover{border-color:var(--green);color:var(--green)}
-    .hero-note{margin-top:28px;color:var(--muted);font-size:.8rem}
-    .hero-note span{color:var(--green);font-weight:700}
-    .profile-card{position:relative;background:var(--green);color:white;padding:28px;border-radius:5px;min-height:420px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
-    .profile-card:after{content:"";position:absolute;width:330px;height:330px;border:1px solid rgba(255,255,255,.15);border-radius:50%;right:-125px;top:-100px;box-shadow:0 0 0 34px rgba(255,255,255,.025),0 0 0 70px rgba(255,255,255,.025)}
-    .card-top{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center}
-    .card-index{color:#d7e4d8}
-    .card-symbol{width:44px;height:44px;border:1px solid rgba(255,255,255,.35);border-radius:50%;display:grid;place-items:center;font-size:1.3rem}
-    .card-middle{position:relative;z-index:1;margin:50px 0}
-    .card-kicker{color:#d5e2d7;margin-bottom:12px}
-    .card-middle h2{font-size:2.5rem;line-height:1.08;max-width:360px;letter-spacing:-.06em}
-    .card-middle p{margin-top:16px;color:#d7e4d8;font-size:.92rem;max-width:340px}
-    .card-bottom{position:relative;z-index:1;padding-top:18px;border-top:1px solid rgba(255,255,255,.24);display:flex;justify-content:space-between;gap:12px;align-items:end}
-    .card-bottom strong{display:block;font-family:var(--display);font-size:1.15rem}
-    .card-bottom span{font-size:.75rem;color:#d7e4d8}
-    .arrow-circle{width:35px;height:35px;border-radius:50%;background:var(--lime);color:var(--ink);display:grid;place-items:center;flex-shrink:0}
-    .ticker{background:var(--lime);color:var(--ink);overflow:hidden;border-block:1px solid #c5e15f}
-    .ticker-track{display:flex;gap:30px;width:max-content;padding:13px 0;animation:marquee 34s linear infinite}
-    .ticker-track span{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;white-space:nowrap;display:flex;align-items:center;gap:30px}
-    .ticker-track span:after{content:"✳";font-size:.8rem}
-    @keyframes marquee{to{transform:translateX(-50%)}}
-    .section{padding:96px 0}
-    .section-head{display:grid;grid-template-columns:150px 1fr;gap:26px;margin-bottom:48px;align-items:start}
-    .section-number{color:var(--green);padding-top:10px}
-    .section-title{font-size:clamp(2.3rem,4.6vw,4rem);line-height:1.05;font-weight:600}
-    .section-intro{color:var(--muted);max-width:650px;margin-top:16px;font-size:1rem;line-height:1.8}
-    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px}
-    .about-copy p{color:var(--muted);margin-bottom:18px;line-height:1.9}
-    .about-copy strong{color:var(--ink);font-weight:600}
-    .about-callout{margin-top:26px;padding:20px 22px;border-left:3px solid var(--green);background:#eeeee7;font-size:.94rem}
-    .about-callout strong{color:var(--green)}
-    .capabilities{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .capability{padding:22px;background:var(--white);border:1px solid var(--line);border-radius:4px;min-height:155px}
-    .capability .cap-icon{font-size:1.2rem;color:var(--green);margin-bottom:18px}
-    .capability h3{font-size:1.08rem;letter-spacing:-.03em;margin-bottom:8px}
-    .capability p{font-size:.82rem;color:var(--muted);line-height:1.7}
-    .experience{background:#eeeee7;border-block:1px solid var(--line)}
-    .timeline{border-top:1px solid #d5d8cf}
-    .timeline-item{display:grid;grid-template-columns:155px 1fr;gap:35px;padding:30px 0;border-bottom:1px solid #d5d8cf}
-    .timeline-date{color:var(--green);padding-top:4px}
-    .timeline-content{display:grid;grid-template-columns:minmax(0,1fr) 190px;gap:25px}
-    .timeline-content h3{font-size:1.35rem;letter-spacing:-.04em}
-    .company{font-weight:600;margin-top:4px}
-    .role-meta{font-size:.82rem;color:var(--muted);margin-top:4px}
-    .timeline-content ul{margin-top:15px;padding-left:18px;color:var(--muted);font-size:.9rem}
-    .timeline-content li{padding:3px 0 3px 3px}
-    .timeline-content li::marker{color:var(--green)}
-    .role-type{align-self:start;justify-self:end;border:1px solid #c8cec3;padding:6px 9px;color:var(--green);border-radius:3px;font-size:.68rem}
-    .projects-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
-    .project{background:var(--white);border:1px solid var(--line);border-radius:5px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,border-color .2s}
-    .project:hover{transform:translateY(-4px);border-color:#9cb5a2}
-    .project.featured{grid-column:1/-1;display:grid;grid-template-columns:1.2fr .8fr}
-    .project-body{padding:28px;display:flex;flex-direction:column;align-items:flex-start}
-    .project-label{color:var(--green);margin-bottom:16px}
-    .project h3{font-size:1.55rem;line-height:1.16;letter-spacing:-.045em}
-    .project p{color:var(--muted);font-size:.9rem;line-height:1.8;margin-top:13px}
-    .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
-    .chip{font-family:var(--mono);font-size:.67rem;color:#53645a;background:#f0f2ec;border:1px solid #e0e5dc;padding:5px 8px;border-radius:2px}
-    .project-links{display:flex;gap:18px;flex-wrap:wrap;margin-top:22px}
-    .project-links a{color:var(--green);text-decoration:none;font-size:.82rem;font-weight:700}
-    .project-links a:hover{text-decoration:underline}
-    .project-visual{background:#e9eee5;min-height:230px;padding:26px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
-    .project.featured .project-visual{min-height:100%}
-    .visual-top{display:flex;justify-content:space-between;color:var(--green)}
-    .visual-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;position:relative;z-index:1}
-    .visual-stat{background:rgba(255,254,250,.85);border:1px solid rgba(35,91,69,.12);padding:14px;border-radius:3px}
-    .visual-stat strong{display:block;font-family:var(--display);font-size:1.7rem;letter-spacing:-.06em;color:var(--green);line-height:1.1}
-    .visual-stat span{font-size:.68rem;color:var(--muted)}
-    .visual-lines{position:absolute;inset:35px 15px 20px 35px;opacity:.45;background:repeating-linear-gradient(0deg,transparent 0 34px,rgba(35,91,69,.12) 35px 36px),repeating-linear-gradient(90deg,transparent 0 34px,rgba(35,91,69,.12) 35px 36px)}
-    .project-visual.dark{background:#1c352b;color:#f7f6f2}
-    .project-visual.dark .visual-top{color:#d4f36b}
-    .project-visual.dark .visual-stat{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.15)}
-    .project-visual.dark .visual-stat strong{color:#d4f36b}
-    .project-visual.dark .visual-stat span{color:#d4dfd5}
-    .project-visual.orange{background:#f3e6dc}
-    .project-visual.lime{background:#e9f2c9}
-    .mini-chart{height:105px;display:flex;align-items:end;gap:9px;padding:10px 0;position:relative;z-index:1}
-    .mini-chart i{display:block;flex:1;background:var(--green);border-radius:2px 2px 0 0;opacity:.82}
-    .project-visual.dark .mini-chart i{background:var(--lime)}
-    .project-visual .big-word{font-family:var(--display);font-size:clamp(2rem,4vw,3.4rem);line-height:1;font-weight:700;letter-spacing:-.07em;position:relative;z-index:1}
-    .project-visual .small-word{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;position:relative;z-index:1}
-    .skills-section{background:var(--green);color:white}
-    .skills-section .section-number{color:var(--lime)}
-    .skills-section .section-intro{color:#d0ddd3}
-    .skill-groups{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.2)}
-    .skill-group{background:var(--green);padding:24px}
-    .skill-group h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--lime);margin-bottom:17px}
-    .skill-group p{color:#e1e9e2;font-size:.87rem;line-height:2}
-    .education-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    .education-card,.cert-card{padding:26px;background:var(--white);border:1px solid var(--line);border-radius:4px}
-    .education-card h3{font-size:1.3rem;line-height:1.3}
-    .education-card .degree{color:var(--muted);margin-top:8px}
-    .education-meta{display:flex;justify-content:space-between;gap:14px;margin-top:22px;padding-top:17px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
-    .education-meta strong{color:var(--green)}
-    .coursework{grid-column:1/-1;padding:22px 26px;background:#eeeee7;border:1px solid var(--line);border-radius:4px}
-    .coursework h3{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:12px}
-    .coursework p{color:var(--muted);font-size:.88rem;line-height:1.9}
-    .achievements{margin-top:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-    .achievement{border-top:2px solid var(--green);padding:16px 0;color:var(--muted);font-size:.86rem}
-    .achievement strong{display:block;color:var(--ink);margin-bottom:6px}
-    .contact-section{padding:80px 0 90px}
-    .contact-card{background:var(--lime);padding:clamp(28px,5vw,58px);border-radius:5px;display:grid;grid-template-columns:1fr auto;gap:35px;align-items:end}
-    .contact-card h2{font-size:clamp(2.5rem,5vw,4.8rem);line-height:1.02;max-width:680px}
-    .contact-card p{margin-top:17px;color:#46563a;max-width:560px}
-    .contact-links{display:flex;flex-direction:column;gap:10px;min-width:210px}
-    .contact-links a{padding:12px 15px;border:1px solid rgba(24,34,30,.25);border-radius:3px;text-decoration:none;font-size:.84rem;font-weight:700;display:flex;justify-content:space-between;gap:12px}
-    .contact-links a:hover{background:var(--ink);color:white}
-    footer{padding:24px 0;border-top:1px solid var(--line)}
-    .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;color:var(--muted);font-size:.78rem}
-    .footer-inner a{color:var(--green);text-decoration:none}
-    .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
-    .reveal.in-view{opacity:1;transform:translateY(0)}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ticker-track{animation:none}.reveal{opacity:1;transform:none;transition:none}*{transition-duration:.01ms!important}}
-    @media(max-width:900px){
-      .hero-grid{grid-template-columns:1fr .8fr;gap:30px}.profile-card{min-height:390px;padding:22px}.card-middle h2{font-size:2rem}
-      .about-grid{gap:35px}.timeline-content{grid-template-columns:1fr}.role-type{justify-self:start;grid-row:1}
-      .skill-groups{grid-template-columns:repeat(2,1fr)}.project.featured{grid-template-columns:1fr .8fr}
-      .contact-card{grid-template-columns:1fr}.contact-links{flex-direction:row;flex-wrap:wrap}.contact-links a{flex:1}
-    }
-    @media(max-width:680px){
-      .wrap,.nav-inner{width:calc(100% - 36px)}.nav{height:66px}.menu-toggle{display:block}
-      .nav-links{display:none;position:absolute;left:0;right:0;top:65px;padding:18px;background:var(--paper);border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;gap:0}
-      .nav-links.open{display:flex}.nav-links a{padding:12px 4px}.nav-links .nav-contact{text-align:center;margin-top:8px}
-      .hero{padding:65px 0 55px}.hero:before{right:-370px;top:60px}.hero-grid{grid-template-columns:1fr;gap:35px}
-      h1{font-size:clamp(3.4rem,16vw,5.4rem)}.hero-sub{font-size:1rem}.profile-card{min-height:340px}.card-middle{margin:35px 0}
-      .section{padding:65px 0}.section-head{grid-template-columns:44px 1fr;gap:14px;margin-bottom:30px}.section-number{font-size:.72rem;padding-top:7px}.section-title{font-size:2.5rem}
-      .about-grid{grid-template-columns:1fr;gap:28px}.capabilities{gap:9px}.capability{padding:17px;min-height:0}
-      .timeline-item{grid-template-columns:78px 1fr;gap:14px;padding:23px 0}.timeline-content h3{font-size:1.17rem}.timeline-content ul{font-size:.85rem}
-      .projects-grid{grid-template-columns:1fr}.project.featured{grid-column:auto;display:flex}.project.featured .project-visual{min-height:235px}.project-body{padding:23px}.project h3{font-size:1.4rem}
-      .skill-groups{grid-template-columns:1fr 1fr}.skill-group{padding:17px}.skill-group p{font-size:.82rem}
-      .education-grid{grid-template-columns:1fr}.coursework{grid-column:auto}.achievements{grid-template-columns:1fr;gap:5px}
-      .contact-section{padding:55px 0}.contact-links{flex-direction:column}.contact-links a{flex:auto}
-      .footer-inner{flex-direction:column;align-items:flex-start}.ticker-track{animation-duration:45s}
-    }
-    @media(max-width:390px){.wrap,.nav-inner{width:calc(100% - 28px)}.hero-actions .btn{width:100%;justify-content:center}.capabilities{grid-template-columns:1fr}.skill-groups{grid-template-columns:1fr}.timeline-item{grid-template-columns:62px 1fr}.project-body{padding:19px}}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f8f7f4">
+<meta name="description" content="Asmi Bandyopadhyay — Implementation Analyst at LeadSquared, with a background in technology consulting, analytics and engineering.">
+<title>Asmi Bandyopadhyay — Technology & Analytics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f8f7f4;--surface:#fff;--ink:#172b3a;--navy:#203b50;--muted:#64727c;--line:#e4e5e2;--accent:#9c6b45;--soft:#f0eee8;--width:1060px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",sans-serif;font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.container{width:min(var(--width),calc(100% - 48px));margin-inline:auto}
+header{height:72px;border-bottom:1px solid var(--line);background:rgba(248,247,244,.96)}
+.nav{height:100%;display:flex;align-items:center;justify-content:space-between}
+.brand{font-family:Manrope,sans-serif;font-size:15px;font-weight:800;letter-spacing:-.04em;text-decoration:none}
+.brand span{color:var(--accent)}
+nav{display:flex;align-items:center;gap:27px}
+nav a{text-decoration:none;color:var(--muted);font-size:13px}
+nav a:hover,nav a:focus{color:var(--ink)}
+nav .contact-link{color:var(--ink);border:1px solid #cbd0d1;padding:8px 13px;border-radius:3px}
+.hero{padding:94px 0 80px;border-bottom:1px solid var(--line)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(230px,.7fr);gap:76px;align-items:center}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin:0 0 22px}
+h1,h2,h3,p{margin-top:0}
+h1,h2,h3{font-family:Manrope,sans-serif}
+h1{font-size:clamp(40px,5.6vw,66px);line-height:1.08;letter-spacing:-.065em;font-weight:600;margin-bottom:23px;max-width:690px}
+h1 span{color:#657986}
+.intro{font-size:17px;line-height:1.85;color:#53636e;max-width:640px;margin-bottom:27px}
+.intro strong{color:var(--ink);font-weight:600}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.button{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:11px 16px;text-decoration:none;font-weight:600;font-size:13px;border-radius:3px;border:1px solid var(--navy);transition:background .15s,color .15s}
+.button.primary{background:var(--navy);color:white}
+.button.primary:hover{background:#2d4c63}
+.button.secondary{border-color:#cbd0d1;color:var(--ink);background:transparent}
+.button.secondary:hover{background:var(--soft)}
+.hero-aside{border-left:1px solid var(--line);padding-left:27px}
+.aside-label{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:700;margin-bottom:6px}
+.aside-value{font-size:14px;font-weight:600;margin-bottom:23px;line-height:1.6}
+.aside-value:last-child{margin-bottom:0}
+.aside-value small{display:block;color:var(--muted);font-weight:400;font-size:12px}
+.section{padding:76px 0;border-bottom:1px solid var(--line)}
+.section-head{display:grid;grid-template-columns:175px 1fr;gap:28px;margin-bottom:34px}
+.section-label{font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-weight:700;color:var(--accent);padding-top:9px}
+h2{font-size:clamp(27px,3.5vw,39px);line-height:1.2;letter-spacing:-.05em;font-weight:600;margin-bottom:11px}
+.section-intro{color:var(--muted);max-width:660px;margin-bottom:0;font-size:14px}
+.about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:70px;margin-left:203px}
+.about-copy p{color:#53636e;margin-bottom:16px}
+.about-copy strong{color:var(--ink)}
+.focus-list{border-top:1px solid var(--line)}
+.focus-item{padding:15px 0;border-bottom:1px solid var(--line)}
+.focus-item h3{font-size:14px;letter-spacing:-.02em;margin-bottom:3px}
+.focus-item p{font-size:13px;color:var(--muted);margin:0}
+.experience-list{margin-left:203px;border-top:1px solid var(--line)}
+.experience-item{display:grid;grid-template-columns:155px 1fr;gap:24px;padding:25px 0;border-bottom:1px solid var(--line)}
+.date{font-size:11px;line-height:1.8;letter-spacing:.04em;color:var(--muted);text-transform:uppercase}
+.job h3{font-size:17px;letter-spacing:-.035em;margin-bottom:2px}
+.company{font-size:13px;font-weight:600;color:var(--navy)}
+.meta{font-size:12px;color:var(--muted);margin-top:2px}
+.job ul{padding-left:17px;margin:12px 0 0;color:#53636e;font-size:13px}
+.job li{padding:2px 0 2px 2px}
+.job li::marker{color:var(--accent)}
+.projects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-left:203px}
+.project{background:var(--surface);border:1px solid var(--line);padding:23px 23px 20px;display:flex;flex-direction:column;min-height:245px}
+.project.featured{grid-column:1/-1;min-height:0}
+.project-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}
+.project-type{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.project-number{font-size:11px;color:#9aa2a5}
+.project h3{font-size:19px;line-height:1.35;letter-spacing:-.04em;margin-bottom:9px}
+.project p{font-size:13px;color:var(--muted);margin-bottom:15px;line-height:1.8}
+.project.featured p{max-width:760px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:4px}
+.tags span{font-size:10px;color:#52626c;border:1px solid var(--line);padding:4px 7px;border-radius:2px}
+.project-links{display:flex;gap:17px;flex-wrap:wrap;margin-top:17px}
+.project-links a{font-size:12px;color:var(--navy);font-weight:700;text-decoration:none}
+.project-links a:hover{text-decoration:underline}
+.skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 50px;margin-left:203px}
+.skill{padding:17px 0;border-top:1px solid var(--line)}
+.skill h3{font-size:13px;letter-spacing:-.01em;margin-bottom:5px}
+.skill p{font-size:13px;color:var(--muted);margin:0;line-height:1.8}
+.education-row{margin-left:203px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.education-card{background:var(--surface);border:1px solid var(--line);padding:23px}
+.education-card .eyebrow{margin-bottom:10px;font-size:10px}
+.education-card h3{font-size:17px;line-height:1.4;letter-spacing:-.035em;margin-bottom:7px}
+.education-card p{font-size:13px;color:var(--muted);margin-bottom:0}
+.education-details{border-top:1px solid var(--line);margin-top:17px;padding-top:13px;display:flex;justify-content:space-between;gap:12px;font-size:11px;color:var(--muted)}
+.education-details strong{color:var(--ink)}
+.achievements{margin:17px 0 0 203px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.achievement{border-top:2px solid #c8d0d1;padding-top:13px;font-size:12px;color:var(--muted)}
+.achievement strong{display:block;color:var(--ink);font-size:13px;margin-bottom:4px}
+.contact{padding:67px 0 75px}
+.contact-panel{background:#eaece9;border:1px solid #dfe2dd;padding:35px 38px;display:flex;align-items:center;justify-content:space-between;gap:35px}
+.contact-panel h2{font-size:clamp(28px,4vw,43px);margin-bottom:9px}
+.contact-panel p{font-size:13px;color:var(--muted);max-width:500px;margin-bottom:0}
+.contact-actions{display:flex;flex-direction:column;gap:9px;min-width:155px}
+.contact-actions a{font-size:12px;text-decoration:none;font-weight:700;border-bottom:1px solid #cbd0cb;padding:7px 0;display:flex;justify-content:space-between;gap:18px}
+.contact-actions a:hover{color:var(--accent)}
+footer{padding:20px 0;border-top:1px solid var(--line);font-size:11px;color:var(--muted)}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:14px}
+footer a{text-decoration:none;color:var(--navy)}
+@media(max-width:800px){.hero-grid{gap:35px;grid-template-columns:minmax(0,1.3fr) minmax(190px,.7fr)}.about-grid,.experience-list,.projects,.skills,.education-row,.achievements{margin-left:0}.section-head{grid-template-columns:130px 1fr}.about-grid{gap:35px}.experience-item{grid-template-columns:125px 1fr}.contact-panel{padding:28px}.projects{gap:12px}}
+@media(max-width:620px){.container{width:calc(100% - 36px)}header{height:auto;min-height:64px}.nav{min-height:64px;align-items:flex-start;flex-direction:column;padding:18px 0}.brand{padding:2px 0}.nav nav{display:flex;flex-wrap:wrap;gap:10px 18px;padding-top:13px}.nav nav a{font-size:12px}.nav nav .contact-link{padding:4px 8px}.hero{padding:60px 0 53px}.hero-grid{grid-template-columns:1fr;gap:34px}h1{font-size:clamp(39px,11vw,58px)}.intro{font-size:15px}.hero-aside{display:grid;grid-template-columns:1fr 1fr;gap:10px 20px;border-left:0;border-top:1px solid var(--line);padding:20px 0 0}.aside-value{margin-bottom:7px}.section{padding:55px 0}.section-head{grid-template-columns:1fr;gap:6px;margin-bottom:25px}.section-label{padding:0}.section-intro{font-size:13px}.about-grid{grid-template-columns:1fr;gap:23px}.experience-item{grid-template-columns:1fr;gap:7px;padding:21px 0}.date br{display:none}.projects{grid-template-columns:1fr}.project.featured{grid-column:auto}.project{min-height:0;padding:20px}.skills{grid-template-columns:1fr;gap:0}.education-row{grid-template-columns:1fr}.achievements{grid-template-columns:1fr;gap:13px}.contact-panel{align-items:flex-start;flex-direction:column;padding:24px}.contact-actions{width:100%}.footer-inner{align-items:flex-start;flex-direction:column;gap:5px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
+</style>
 </head>
 <body>
-  <header class="nav">
-    <div class="nav-inner">
-      <a class="brand" href="#home" aria-label="Asmi Bandyopadhyay, home"><span class="brand-mark">AB</span> Asmi Bandyopadhyay</a>
-      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks">Menu ☰</button>
-      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
-        <a href="#about">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a class="nav-contact" href="#contact">Let's connect ↗</a>
-      </nav>
+<header>
+  <div class="container nav">
+    <a class="brand" href="#home">ASMI <span>·</span> BANDYOPADHYAY</a>
+    <nav aria-label="Main navigation">
+      <a href="#about">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a class="contact-link" href="#contact">Contact ↗</a>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div>
+      <p class="eyebrow">Implementation Analyst · Financial Services</p>
+      <h1>Business problems.<br><span>Thoughtful technology.</span></h1>
+      <p class="intro">I’m Asmi, an engineer working across <strong>business analysis, implementation, and data</strong>. I enjoy making complex requirements easier to understand and turning information into useful, practical solutions.</p>
+      <div class="actions"><a class="button primary" href="#projects">Explore selected work ↘</a><a class="button secondary" href="mailto:asmi.bandyopadhyay@gmail.com">Get in touch ↗</a></div>
     </div>
-  </header>
+    <aside class="hero-aside" aria-label="Professional overview">
+      <div><div class="aside-label">Currently</div><div class="aside-value">LeadSquared<small>Implementation Analyst · Financial Services</small></div></div>
+      <div><div class="aside-label">Previously</div><div class="aside-value">EY Technology Consulting<small>Multimodal RAG · Workflow analysis</small></div></div>
+      <div><div class="aside-label">Based in</div><div class="aside-value">Mumbai, India</div></div>
+      <div><div class="aside-label">Foundation</div><div class="aside-value">B.Tech, Electronics & Communication<small>SRM Institute · Class of 2026</small></div></div>
+    </aside>
+  </div>
+</section>
 
-  <main>
-    <section class="hero" id="home">
-      <div class="wrap hero-grid">
-        <div>
-          <div class="eyebrow mono"><span class="status-dot"></span> Implementation Analyst · Mumbai, India</div>
-          <h1>Curious by nature.<br><span class="accent">Analytical by design.</span></h1>
-          <p class="hero-sub">I’m Asmi — an engineer working at the intersection of <strong>business, data, and technology</strong>. I turn messy requirements into clearer workflows, useful insights, and systems people can actually use.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#projects">Explore my work <span aria-hidden="true">↘</span></a>
-            <a class="btn btn-secondary" href="mailto:asmi.bandyopadhyay@gmail.com">Get in touch <span aria-hidden="true">↗</span></a>
-          </div>
-          <p class="hero-note"><span>Currently:</span> Implementation Analyst, Financial Services at LeadSquared</p>
-        </div>
-        <aside class="profile-card" aria-label="Professional focus">
-          <div class="card-top"><span class="card-index mono">A little about my work / 2026</span><span class="card-symbol" aria-hidden="true">↗</span></div>
-          <div class="card-middle"><div class="card-kicker mono">Where business meets technology</div><h2>Make the complex feel clear.</h2><p>From financial-services implementation and APIs to analytics dashboards and applied machine learning.</p></div>
-          <div class="card-bottom"><div><strong>ECE · Class of 2026</strong><span>SRM Institute of Science and Technology</span></div><span class="arrow-circle" aria-hidden="true">↘</span></div>
-        </aside>
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-head"><div class="section-label">01 / About</div><div><h2>A technical foundation.<br>A business-first mindset.</h2><p class="section-intro">I like work that asks me to understand the problem, connect the dots, and make the solution practical.</p></div></div>
+    <div class="about-grid">
+      <div class="about-copy">
+        <p>My background is in <strong>Electronics and Communication Engineering</strong>, with experience spanning technology consulting, business analytics, and data-driven operations.</p>
+        <p>At <strong>LeadSquared</strong>, I moved from the BFSI sales development team into Financial Services implementation. My earlier role gave me a grounding in CRM data, pipeline reporting, customer research, and commercial workflows; my current focus brings me closer to APIs, CRUD operations, and implementation requirements.</p>
+        <p>At <strong>EY Technology Consulting</strong>, I supported workflow analysis and translated stakeholder needs into functional specifications for a multimodal RAG proof of concept. Outside work, I build projects in credit-risk analytics, applied ML, IoT, and developer tooling.</p>
       </div>
-    </section>
-
-    <div class="ticker" aria-label="Areas of focus"><div class="ticker-track">
-      <span>Business analysis</span><span>REST APIs & CRUD</span><span>Python & SQL</span><span>Financial services</span><span>Dashboards & data</span><span>Machine learning</span><span>Technology consulting</span><span>Business analysis</span><span>REST APIs & CRUD</span><span>Python & SQL</span><span>Financial services</span><span>Dashboards & data</span><span>Machine learning</span><span>Technology consulting</span>
-    </div></div>
-
-    <section class="section" id="about">
-      <div class="wrap">
-        <div class="section-head reveal"><div class="section-number mono">01 / ABOUT</div><div><h2 class="section-title">A technical foundation.<br>A business-first mindset.</h2><p class="section-intro">I like work that asks me to understand the problem, connect the dots, and make the solution practical.</p></div></div>
-        <div class="about-grid reveal">
-          <div class="about-copy">
-            <p>My background is in <strong>Electronics and Communication Engineering</strong>, but the work I’m drawn to sits across technology, operations, and analysis. I enjoy translating between what a business needs and what a technical system can do.</p>
-            <p>At <strong>LeadSquared</strong>, I moved from the BFSI sales development team into Financial Services implementation, building on my experience with CRM data, funnel reporting, and customer requirements. Before that, at <strong>EY Technology Consulting</strong>, I supported workflow analysis and a multimodal RAG proof of concept.</p>
-            <p>Outside work, I build projects that make data tangible: credit-risk analysis, sensor-driven prediction, and developer analytics. I care about clear thinking, reliable execution, and explaining what the numbers actually mean.</p>
-            <div class="about-callout"><strong>My sweet spot:</strong> business requirements, structured problem-solving, data-backed decisions, and technology that solves a real need.</div>
-          </div>
-          <div class="capabilities">
-            <article class="capability"><div class="cap-icon" aria-hidden="true">↗</div><h3>Business & implementation</h3><p>Requirements analysis, workflow mapping, process documentation, APIs, CRUD, and stakeholder coordination.</p></article>
-            <article class="capability"><div class="cap-icon" aria-hidden="true">⌁</div><h3>Data & analytics</h3><p>SQL, Python, Excel, dashboarding, KPI tracking, funnel analysis, and data storytelling.</p></article>
-            <article class="capability"><div class="cap-icon" aria-hidden="true">◈</div><h3>AI & experimentation</h3><p>Machine learning, Random Forest, anomaly detection, LLM applications, and retrieval-augmented generation.</p></article>
-            <article class="capability"><div class="cap-icon" aria-hidden="true">⌘</div><h3>Engineering mindset</h3><p>Systems thinking from embedded platforms, wireless communications, APIs, and full-stack projects.</p></article>
-          </div>
-        </div>
+      <div class="focus-list">
+        <div class="focus-item"><h3>Business & implementation</h3><p>Requirements analysis, workflow mapping, process documentation, REST APIs and CRUD.</p></div>
+        <div class="focus-item"><h3>Data & analytics</h3><p>SQL, Python, Excel, KPI reporting, dashboarding, and funnel analysis.</p></div>
+        <div class="focus-item"><h3>AI & experimentation</h3><p>Machine learning, Random Forest, anomaly detection, LLM applications, and RAG.</p></div>
+        <div class="focus-item"><h3>Engineering mindset</h3><p>Systems thinking from embedded platforms, wireless communications, and full-stack projects.</p></div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <section class="section experience" id="experience">
-      <div class="wrap">
-        <div class="section-head reveal"><div class="section-number mono">02 / EXPERIENCE</div><div><h2 class="section-title">The work behind<br>the work.</h2><p class="section-intro">A progression from technology consulting and commercial analytics into client-facing implementation.</p></div></div>
-        <div class="timeline reveal">
-          <article class="timeline-item">
-            <div class="timeline-date mono">Oct 2026 — Now</div>
-            <div class="timeline-content">
-              <div><h3>Implementation Analyst — Financial Services</h3><div class="company">LeadSquared</div><div class="role-meta">Mumbai, India · APIs, CRUD & implementation workflows</div>
-                <ul><li>Work on Financial Services implementation workflows involving REST APIs, CRUD operations, and integrations.</li><li>Connect business requirements with technical configurations through requirements analysis, process documentation, and stakeholder coordination.</li><li>Build exposure to API troubleshooting and implementation workflow validation.</li></ul>
-              </div><span class="role-type mono">Full-time · Current</span>
-            </div>
-          </article>
-          <article class="timeline-item">
-            <div class="timeline-date mono">Dec 2025 — Sep 2026</div>
-            <div class="timeline-content">
-              <div><h3>Sales Development Representative — BFSI</h3><div class="company">LeadSquared</div><div class="role-meta">Bengaluru, India · Internship converted to full-time</div>
-                <ul><li>Managed and analyzed 100+ daily BFSI opportunities, tracking qualification status, lead aging, pipeline progression, and funnel performance.</li><li>Maintained CRM and Excel lead data and prepared recurring reports for forecasting, pipeline prioritization, and resource allocation.</li><li>Contributed to closing a Digital Broking client and collaborated cross-functionally to improve data quality and reporting accuracy.</li><li>Researched BFSI companies, customers, and market trends to evaluate commercial opportunities.</li></ul>
-              </div><span class="role-type mono">BFSI · CRM analytics</span>
-            </div>
-          </article>
-          <article class="timeline-item">
-            <div class="timeline-date mono">May — Jul 2024</div>
-            <div class="timeline-content">
-              <div><h3>Technology Consulting Intern</h3><div class="company">Ernst & Young LLP (EY)</div><div class="role-meta">Remote</div>
-                <ul><li>Analyzed enterprise workflows, identified operational gaps, and translated findings into structured recommendations.</li><li>Translated stakeholder requirements into functional specifications for a multimodal Retrieval-Augmented Generation (RAG) proof of concept.</li><li>Supported Agile delivery through sprint planning, backlog refinement, testing, documentation, governance, and audit-readiness activities.</li></ul>
-              </div><span class="role-type mono">Technology consulting</span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
+<section class="section" id="experience">
+  <div class="container">
+    <div class="section-head"><div class="section-label">02 / Experience</div><div><h2>Experience, in context.</h2><p class="section-intro">A progression from consulting and commercial analytics into client-facing implementation.</p></div></div>
+    <div class="experience-list">
+      <article class="experience-item">
+        <div class="date">Oct 2026 — Present</div>
+        <div class="job"><h3>Implementation Analyst — Financial Services</h3><div class="company">LeadSquared</div><div class="meta">Mumbai, India · Full-time</div><ul><li>Focus on Financial Services implementation workflows involving APIs and CRUD operations.</li><li>Bridge business requirements and technical execution through structured analysis, documentation, and workflow validation.</li></ul></div>
+      </article>
+      <article class="experience-item">
+        <div class="date">Dec 2025 — Sep 2026</div>
+        <div class="job"><h3>Sales Development Representative — BFSI</h3><div class="company">LeadSquared</div><div class="meta">Bengaluru, India · Internship converted to full-time</div><ul><li>Managed and analyzed 100+ daily BFSI opportunities, tracking qualification status, lead aging, pipeline progression, and funnel performance.</li><li>Maintained CRM and Excel lead data and prepared recurring reports for forecasting, pipeline prioritization, and resource allocation.</li><li>Contributed to closing a Digital Broking client and collaborated cross-functionally to improve data quality and reporting accuracy.</li><li>Researched BFSI companies, customers, and market trends to evaluate commercial opportunities.</li></ul></div>
+      </article>
+      <article class="experience-item">
+        <div class="date">May — Jul 2024</div>
+        <div class="job"><h3>Technology Consulting Intern</h3><div class="company">Ernst & Young LLP (EY)</div><div class="meta">Remote</div><ul><li>Analyzed enterprise workflows, identified operational gaps, and translated findings into structured recommendations.</li><li>Translated stakeholder requirements into functional specifications for a multimodal Retrieval-Augmented Generation (RAG) proof of concept.</li><li>Supported Agile delivery through sprint planning, backlog refinement, testing, documentation, governance, and audit-readiness activities.</li></ul></div>
+      </article>
+    </div>
+  </div>
+</section>
 
-    <section class="section" id="projects">
-      <div class="wrap">
-        <div class="section-head reveal"><div class="section-number mono">03 / SELECTED WORK</div><div><h2 class="section-title">Projects with a<br>point of view.</h2><p class="section-intro">A selection of work across financial analytics, applied machine learning, IoT, and developer tooling.</p></div></div>
-        <div class="projects-grid reveal">
-          <article class="project featured">
-            <div class="project-body">
-              <div class="project-label mono">01 / Featured · Financial analytics</div>
-              <h3>Global Bank Risk & Performance Analytics</h3>
-              <p>An end-to-end credit-risk analytics pipeline covering synthetic data generation, a SQLite star-schema database, advanced SQL analysis, and Tableau dashboards. Designed to surface portfolio risk and turn loan-level data into actionable signals.</p>
-              <div class="chips"><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">SQLite</span><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">Tableau</span><span class="chip">Window functions</span><span class="chip">Star schema</span></div>
-              <div class="project-links"><a href="https://public.tableau.com/app/profile/asmi.b6706/viz/GlobalBankRiskPerformanceAnalytics" target="_blank" rel="noreferrer">View Tableau dashboard ↗</a><a href="https://github.com/itsasmikb/bank_risk_project" target="_blank" rel="noreferrer">Source on GitHub ↗</a></div>
-            </div>
-            <div class="project-visual dark"><div class="visual-top mono"><span>Portfolio risk snapshot</span><span>SQL / BI</span></div><div class="visual-grid"><div class="visual-stat"><strong>50k</strong><span>Loans analysed</span></div><div class="visual-stat"><strong>38%</strong><span>Losses from Grade E–F</span></div><div class="visual-stat"><strong>4,800</strong><span>High-risk active loans flagged</span></div><div class="visual-stat"><strong>3.8×</strong><span>Default rate for FICO &lt; 670</span></div></div><div class="small-word">From raw data to risk signals</div></div>
-          </article>
-          <article class="project">
-            <div class="project-visual"><div class="visual-top mono"><span>02 / Applied ML</span><span>01</span></div><div class="visual-lines"></div><div class="mini-chart"><i style="height:32%"></i><i style="height:48%"></i><i style="height:42%"></i><i style="height:75%"></i><i style="height:58%"></i><i style="height:91%"></i><i style="height:69%"></i></div><div class="big-word">97%<br>accuracy</div></div>
-            <div class="project-body"><div class="project-label mono">Edge AI · Healthcare</div><h3>Smart Healthcare Monitoring</h3><p>A biomedical analytics pipeline connecting ECG, EMG, SpO₂, and heart-rate sensor data through MQTT and SQL to a Random Forest model, with Raspberry Pi edge inference.</p><div class="chips"><span class="chip">Python</span><span class="chip">Random Forest</span><span class="chip">SQL</span><span class="chip">MQTT</span><span class="chip">Raspberry Pi</span></div><div class="project-links"><a href="https://github.com/itsasmikb" target="_blank" rel="noreferrer">Explore GitHub ↗</a></div></div>
-          </article>
-          <article class="project">
-            <div class="project-visual lime"><div class="visual-top mono"><span>03 / IoT & forecasting</span><span>02</span></div><div class="visual-lines"></div><div class="mini-chart"><i style="height:28%"></i><i style="height:37%"></i><i style="height:30%"></i><i style="height:54%"></i><i style="height:45%"></i><i style="height:77%"></i><i style="height:88%"></i></div><div class="big-word">24-hour<br>horizon</div></div>
-            <div class="project-body"><div class="project-label mono">IoT · Predictive analytics</div><h3>Real-Time AQI Prediction</h3><p>An IoT-to-SQL analytics pipeline across five sensor nodes, with AQI trend and anomaly-detection dashboards and directional forecasting over a 24-hour horizon.</p><div class="chips"><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">IoT</span></div><div class="project-links"><span class="mono">95% directional forecast accuracy</span></div></div>
-          </article>
-          <article class="project">
-            <div class="project-visual orange"><div class="visual-top mono"><span>04 / Full-stack</span><span>03</span></div><div class="visual-lines"></div><div class="big-word">Dev<br>signals<span style="color:var(--orange)">.</span></div><div class="small-word">Code activity → useful metrics</div></div>
-            <div class="project-body"><div class="project-label mono">Developer tooling · CI/CD</div><h3>Developer Analytics Dashboard</h3><p>A full-stack dashboard using GitHub API and OAuth authentication to surface commit velocity, pull-request merge rates, and CI/CD pipeline health metrics.</p><div class="chips"><span class="chip">Next.js</span><span class="chip">GitHub API</span><span class="chip">NextAuth</span><span class="chip">CI/CD</span><span class="chip">Tailwind CSS</span></div><div class="project-links"><a href="https://github.com/itsasmikb" target="_blank" rel="noreferrer">Explore GitHub ↗</a></div></div>
-          </article>
-          <article class="project">
-            <div class="project-visual dark"><div class="visual-top mono"><span>05 / Real-time systems</span><span>04</span></div><div class="visual-lines"></div><div class="big-word">Live.<br>Private.<br>Connected.</div><div class="small-word">Realtime chat · Firebase · AES</div></div>
-            <div class="project-body"><div class="project-label mono">Security · Real-time</div><h3>Real-Time Chat with E2E Encryption</h3><p>A real-time chat application built with Firebase, focused on live message delivery and an encrypted communication flow.</p><div class="chips"><span class="chip">Firebase</span><span class="chip">AES encryption</span><span class="chip">JavaScript</span></div><div class="project-links"><a href="https://github.com/itsasmikb" target="_blank" rel="noreferrer">Explore GitHub ↗</a></div></div>
-          </article>
-        </div>
-      </div>
-    </section>
+<section class="section" id="projects">
+  <div class="container">
+    <div class="section-head"><div class="section-label">03 / Selected work</div><div><h2>Projects, not decoration.</h2><p class="section-intro">A selection of technical work, with the problem and approach kept front and centre.</p></div></div>
+    <div class="projects">
+      <article class="project featured">
+        <div class="project-top"><span class="project-type">Financial analytics · Featured</span><span class="project-number">01</span></div>
+        <h3>Global Bank Risk & Performance Analytics</h3>
+        <p>Built an end-to-end credit-risk analytics pipeline covering 50,000 loans, 35,000 customers, and 80 branches. Created a SQLite star-schema database and used CTEs, window functions, and multi-table joins to analyse portfolio performance. Tableau dashboards showed Grade E–F loans represented 15% of volume but 38% of losses, and flagged 4,800 high-risk active loans.</p>
+        <div class="tags"><span>Python</span><span>SQL</span><span>SQLite</span><span>Pandas</span><span>NumPy</span><span>Tableau</span></div>
+        <div class="project-links"><a href="https://public.tableau.com/app/profile/asmi.b6706/viz/GlobalBankRiskPerformanceAnalytics" target="_blank" rel="noreferrer">View Tableau dashboard ↗</a><a href="https://github.com/itsasmikb/bank_risk_project" target="_blank" rel="noreferrer">GitHub repository ↗</a></div>
+      </article>
+      <article class="project">
+        <div class="project-top"><span class="project-type">Applied ML · Healthcare</span><span class="project-number">02</span></div>
+        <h3>Edge-AI Smart Healthcare Monitoring</h3>
+        <p>Designed a biomedical analytics pipeline from ECG, EMG, SpO₂, and heart-rate sensors through MQTT ingestion and SQL storage to Random Forest inference on Raspberry Pi.</p>
+        <div class="tags"><span>Python</span><span>Random Forest</span><span>SQL</span><span>MQTT</span><span>Raspberry Pi</span></div>
+        <div class="project-links"><span style="font-size:12px;color:var(--muted)">Reported model accuracy: 97%</span><a href="https://github.com/itsasmikb" target="_blank" rel="noreferrer">GitHub ↗</a></div>
+      </article>
+      <article class="project">
+        <div class="project-top"><span class="project-type">IoT · Forecasting</span><span class="project-number">03</span></div>
+        <h3>Real-Time Air Quality Prediction</h3>
+        <p>Built an IoT-to-SQL pipeline across five sensor nodes with dashboards for AQI trends and anomaly detection, forecasting across a 24-hour horizon.</p>
+        <div class="tags"><span>Python</span><span>SQL</span><span>Pandas</span><span>NumPy</span><span>IoT</span></div>
+        <div class="project-links"><span style="font-size:12px;color:var(--muted)">Reported directional forecasting accuracy: 95%</span></div>
+      </article>
+      <article class="project">
+        <div class="project-top"><span class="project-type">Developer tools · Full-stack</span><span class="project-number">04</span></div>
+        <h3>Developer Analytics Dashboard</h3>
+        <p>Built a full-stack GitHub analytics dashboard with OAuth authentication to surface commit velocity, pull-request merge rates, and CI/CD pipeline health.</p>
+        <div class="tags"><span>Next.js</span><span>GitHub API</span><span>NextAuth</span><span>CI/CD</span><span>Tailwind CSS</span></div>
+        <div class="project-links"><a href="https://github.com/itsasmikb" target="_blank" rel="noreferrer">GitHub ↗</a></div>
+      </article>
+      <article class="project">
+        <div class="project-top"><span class="project-type">Real-time · Security</span><span class="project-number">05</span></div>
+        <h3>Cloud Chat Application</h3>
+        <p>Developed a real-time chat application using Firebase, with a focus on live message delivery and secure communication.</p>
+        <div class="tags"><span>Firebase</span><span>JavaScript</span><span>Encryption</span></div>
+        <div class="project-links"><a href="https://github.com/itsasmikb" target="_blank" rel="noreferrer">GitHub ↗</a></div>
+      </article>
+    </div>
+  </div>
+</section>
 
-    <section class="section skills-section" id="skills">
-      <div class="wrap">
-        <div class="section-head reveal"><div class="section-number mono">04 / TOOLKIT</div><div><h2 class="section-title">Tools I use to<br>make things work.</h2><p class="section-intro">A practical toolkit spanning analysis, implementation, experimentation, and engineering.</p></div></div>
-        <div class="skill-groups reveal">
-          <div class="skill-group"><h3>Data & programming</h3><p>Python<br>SQL · SQLite<br>Pandas · NumPy<br>C · C++ · Bash<br>Advanced Excel</p></div>
-          <div class="skill-group"><h3>BI & analysis</h3><p>Tableau · Power BI<br>KPI dashboards<br>Funnel analysis<br>Data cleaning<br>Business analysis</p></div>
-          <div class="skill-group"><h3>AI & data systems</h3><p>Machine learning<br>Random Forest<br>LLM applications · RAG<br>MQTT · IoT<br>Raspberry Pi</p></div>
-          <div class="skill-group"><h3>Platforms & engineering</h3><p>REST APIs · CRUD<br>Git · GitHub · JIRA<br>Agile · Scrum<br>MATLAB · GNU Radio<br>Verilog · Vivado · ModelSim</p></div>
-        </div>
-      </div>
-    </section>
+<section class="section" id="skills">
+  <div class="container">
+    <div class="section-head"><div class="section-label">04 / Toolkit</div><div><h2>Skills & tools.</h2><p class="section-intro">A practical toolkit across analysis, implementation, experimentation, and engineering.</p></div></div>
+    <div class="skills">
+      <div class="skill"><h3>Programming & data</h3><p>Python (Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn), SQL, C, C++, Verilog HDL, Embedded C, Bash.</p></div>
+      <div class="skill"><h3>Analytics & visualisation</h3><p>Advanced Excel, Tableau, Power BI, KPI analysis, dashboarding, funnel analysis, data cleaning, business analysis.</p></div>
+      <div class="skill"><h3>AI & machine learning</h3><p>Machine learning, Random Forest, prompt engineering, AI-assisted analysis, LLM applications, RAG.</p></div>
+      <div class="skill"><h3>Platforms & engineering</h3><p>REST APIs, JIRA, Agile/Scrum, Git/GitHub, MATLAB, GNU Radio, Vivado, ModelSim, Proteus, Multisim, ESP32, Arduino, Raspberry Pi.</p></div>
+    </div>
+  </div>
+</section>
 
-    <section class="section" id="education">
-      <div class="wrap">
-        <div class="section-head reveal"><div class="section-number mono">05 / BACKGROUND</div><div><h2 class="section-title">Built on curiosity.<br>Grounded in fundamentals.</h2><p class="section-intro">Engineering taught me to think in systems; analytics taught me to ask what the system is telling us.</p></div></div>
-        <div class="education-grid reveal">
-          <article class="education-card"><div class="mono" style="color:var(--green);margin-bottom:15px">Education</div><h3>SRM Institute of Science and Technology</h3><p class="degree">B.Tech in Electronics & Communication Engineering</p><div class="education-meta"><span>Chennai, India</span><span>Aug 2022 — May 2026</span></div><div class="education-meta" style="margin-top:0;padding-top:12px;border-top:0"><span>Academic performance</span><strong>GPA 8.26 / 10</strong></div></article>
-          <article class="cert-card"><div class="mono" style="color:var(--green);margin-bottom:15px">Selected learning</div><h3 style="font-family:var(--display);font-size:1.3rem;letter-spacing:-.04em">Learning across disciplines</h3><p style="color:var(--muted);margin-top:12px;font-size:.9rem;line-height:1.9">Google — Generative AI & Machine Learning<br>DataCamp — Python for Data Science<br>Udemy — SQL & Database Engineering<br>GeeksforGeeks — GitHub CI/CD</p></article>
-          <div class="coursework"><h3>Relevant coursework</h3><p>Database Management Systems · Probability & Statistics · Data Structures · Computer Networks · Information Security · Machine Learning · Data Analytics for Communication Networks · Python for Data Analytics</p></div>
-        </div>
-        <div class="achievements reveal">
-          <div class="achievement"><strong>ECE Toppers List</strong>Recognised for academic excellence.</div>
-          <div class="achievement"><strong>Editorial Lead · SRMKZILLA</strong>Managed content strategy and end-to-end publication workflows in a Mozilla-affiliated university community.</div>
-          <div class="achievement"><strong>Analytics storytelling</strong>Built and published interactive Tableau dashboards translating findings into business insights.</div>
-        </div>
-      </div>
-    </section>
+<section class="section" id="education">
+  <div class="container">
+    <div class="section-head"><div class="section-label">05 / Background</div><div><h2>Education & beyond.</h2><p class="section-intro">Engineering fundamentals, analytical curiosity, and communication.</p></div></div>
+    <div class="education-row">
+      <article class="education-card"><p class="eyebrow">Education</p><h3>SRM Institute of Science and Technology</h3><p>B.Tech — Electronics & Communication Engineering</p><div class="education-details"><span>Chennai, India<br>Aug 2022 — May 2026</span><span><strong>GPA 8.26 / 10</strong></span></div></article>
+      <article class="education-card"><p class="eyebrow">Selected learning</p><h3>Learning across disciplines</h3><p>Google — Generative AI & Machine Learning<br>DataCamp — Python for Data Science<br>Udemy — SQL & Database Engineering<br>GeeksforGeeks — GitHub CI/CD</p></article>
+    </div>
+    <div class="achievements">
+      <div class="achievement"><strong>ECE Toppers List</strong>Recognised for academic excellence.</div>
+      <div class="achievement"><strong>Editorial Lead · SRMKZILLA</strong>Managed content strategy and publication workflows in a Mozilla-affiliated university community.</div>
+      <div class="achievement"><strong>Analytics storytelling</strong>Built and published interactive Tableau dashboards translating findings into business insights.</div>
+    </div>
+    <div class="about-grid" style="margin-top:27px">
+      <div><p class="eyebrow" style="margin-bottom:8px">Relevant coursework</p><p style="font-size:13px;color:var(--muted);margin:0">Database Management Systems · Probability & Statistics · Data Structures · Computer Networks · Information Security · Machine Learning · Data Analytics for Communication Networks · Python for Data Analytics</p></div>
+      <div><p class="eyebrow" style="margin-bottom:8px">Elsewhere</p><p style="font-size:13px;color:var(--muted);margin:0">Editorial work, analytical storytelling, and building small projects to explore how technology can solve practical problems.</p></div>
+    </div>
+  </div>
+</section>
 
-    <section class="contact-section" id="contact">
-      <div class="wrap">
-        <div class="contact-card reveal">
-          <div><div class="mono" style="margin-bottom:20px">Have a good problem to solve?</div><h2>Let’s make something useful.</h2><p>I’m always happy to connect about implementation, business analysis, data, or technology. If you have a thoughtful problem, I’d love to hear about it.</p></div>
-          <div class="contact-links"><a href="mailto:asmi.bandyopadhyay@gmail.com">Email me <span>↗</span></a><a href="https://www.linkedin.com/in/itsasmikb" target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a><a href="https://github.com/itsasmikb" target="_blank" rel="noreferrer">GitHub <span>↗</span></a><a href="https://public.tableau.com/app/profile/asmi.b6706/viz/GlobalBankRiskPerformanceAnalytics" target="_blank" rel="noreferrer">Tableau <span>↗</span></a></div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer><div class="wrap footer-inner"><span>© <span id="year">2026</span> Asmi Bandyopadhyay</span><span>Designed with intention · Built for the web</span><a href="#home">Back to top ↑</a></div></footer>
-  <script>
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('navLinks');
-    menuToggle.addEventListener('click', () => {
-      const open = navLinks.classList.toggle('open');
-      menuToggle.setAttribute('aria-expanded', String(open));
-      menuToggle.textContent = open ? 'Close ×' : 'Menu ☰';
-    });
-    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      menuToggle.setAttribute('aria-expanded', 'false');
-      menuToggle.textContent = 'Menu ☰';
-    }));
-    document.getElementById('year').textContent = new Date().getFullYear();
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {threshold: 0.12});
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  </script>
+<section class="contact" id="contact">
+  <div class="container contact-panel">
+    <div><p class="eyebrow" style="margin-bottom:12px">Get in touch</p><h2>Let’s talk about good work.</h2><p>Interested in implementation, business analysis, data, or technology? I’d be happy to connect.</p></div>
+    <div class="contact-actions"><a href="mailto:asmi.bandyopadhyay@gmail.com">Email <span>↗</span></a><a href="https://www.linkedin.com/in/itsasmikb" target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a><a href="https://github.com/itsasmikb" target="_blank" rel="noreferrer">GitHub <span>↗</span></a><a href="https://public.tableau.com/app/profile/asmi.b6706/viz/GlobalBankRiskPerformanceAnalytics" target="_blank" rel="noreferrer">Tableau <span>↗</span></a></div>
+  </div>
+</section>
+</main>
+<footer><div class="container footer-inner"><span>© <span id="year">2026</span> Asmi Bandyopadhyay</span><span>Technology · Business · Analytics</span><a href="#home">Back to top ↑</a></div></footer>
+<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
 </body>
 </html>
